@@ -7,19 +7,12 @@ int idx[5][101], C[407], V[407], seq[407], aux[407];
 
 int lis() {
 	int pos = 0;
-	aux[pos++] = 0;
+	aux[pos++] = seq[0];
 	for (int i = 1; i < c*n; i++) {
-		if (seq[aux[pos-1]] < seq[i]) {
-			aux[pos++] = i;
-			continue;
-		}
-		int l = 0, r = pos-1;
-		while (l < r) {
-			int m = (l + r) / 2;
-			(seq[aux[m]] < seq[i]) ? l = m+1 : r = m;
-		}
-		if (seq[i] < seq[aux[l]])
-			aux[l] = i;
+		if (aux[pos-1] < seq[i])
+			aux[pos++] = seq[i];
+		else
+			*(upper_bound(aux, aux + pos, seq[i])) = seq[i];
 	}
 	return pos;
 }
@@ -38,8 +31,7 @@ int main(void) {
 	for (int i = 0; i < c*n; i++)
 		cin >> C[i] >> V[i];
 	do {
-		int Count = 0;
-		for (int i = 0; i < c; i++)
+		for (int i = 0, Count = 0; i < c; i++)
 			for (int j = 1; j <= n; j++)
 				idx[ord[i]][j] = ++Count;
 		for (int i = 0; i < c*n; i++)

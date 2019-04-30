@@ -28,6 +28,6 @@ int main(void) {
 			s[i] = v[i].F.F, d[i] = v[i].F.S, c[i] = v[i].S;
 		for (int i = n-1; i >= 0; i--)
 			dp[i] = max(dp[i+1], c[i] + dp[(upper_bound(s.begin(), s.end(), s[i]+d[i]) - s.begin())]);
-		cout << *max_element(dp.begin(), dp.end()) << endl;
+		cout << dp[0] << endl;
 	}
 }

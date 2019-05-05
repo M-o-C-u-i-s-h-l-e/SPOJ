@@ -45,11 +45,8 @@ int a[21], b[21], dp[21][2501];
 int solve(int i, int rem) {
 	if (dp[i][rem] != -1)
 		return dp[i][rem];
-	if (i == m) {
-		if (rem == 0)
-			return 1;
-		return 0;
-	}
+	if (i == m)
+		return (rem == 0) ? 1 : 0;
 	int x = 0;
 	for (int j = a[i]; j <= b[i] && j <= rem; j++)
 		x += solve(i+1, rem-j);

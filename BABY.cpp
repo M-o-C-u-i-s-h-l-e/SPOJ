@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define endl "\n"
+#define endl '\n'
 
 int n;
 int v1[17], v2[17];

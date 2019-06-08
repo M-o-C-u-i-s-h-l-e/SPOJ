@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define endl "\n"
+#define endl '\n'
 
 int n;
 string dp[10001][101];

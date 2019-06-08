@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define endl "\n"
+#define endl '\n'
 
 string s1, s2;
 int n, m;

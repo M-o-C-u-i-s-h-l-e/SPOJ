@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define endl "\n"
+#define endl '\n'
 
 long long __bsearch(vector<long long> v, long long key) {
 	long long l = 0, r = v.size() - 1;

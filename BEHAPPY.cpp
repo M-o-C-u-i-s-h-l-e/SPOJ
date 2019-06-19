@@ -37,7 +37,7 @@ int main(void) {
 
 #include <bits/stdc++.h>
 using namespace std;
-#define endl "\n"
+#define endl '\n'
 
 int m, n;
 int a[21], b[21], dp[21][2501];

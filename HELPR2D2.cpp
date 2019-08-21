@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define endl '\n';
-#define Max first
-#define Min second
 
 int toInt(string str) {
     stringstream ss(str);
@@ -18,20 +16,18 @@ int nextPowerOf2(int n) {
     return x;
 }
 
-int update(vector<pair<int, int>> &segTree, int low, int high, int val, int pos) {
-    if (val > segTree[pos].Max)
+int update(vector<int> &segTree, int low, int high, int val, int pos) {
+    if (val > segTree[pos])
         return -1;
     if (low == high) {
-        segTree[pos].Max -= val;
-        segTree[pos].Min -= val;
+        segTree[pos] -= val;
         return low;
     }
     int mid = (low + high) >> 1;
     int temp = update(segTree, low, mid, val, 2 * pos + 1);
     if (temp == -1)
         temp = update(segTree, mid + 1, high, val, 2 * pos + 2);
-    segTree[pos].Max = max(segTree[2 * pos + 1].Max, segTree[2 * pos + 2].Max);
-    segTree[pos].Min = min(segTree[2 * pos + 1].Min, segTree[2 * pos + 2].Min);
+    segTree[pos] = max(segTree[2 * pos + 1], segTree[2 * pos + 2]);
     return temp;
 }
 
@@ -46,7 +42,7 @@ int main(void) {
         int k, n;
         cin >> k >> n;
         int N = nextPowerOf2(n);
-        vector<pair<int, int>> segTree(N << 1, {k, k});
+        vector<int> segTree(N << 1, k);
         int waste = 0, no, res = 0;
         for (int i = 0; i < n; i+=no) {
             string str;

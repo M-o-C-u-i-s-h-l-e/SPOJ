@@ -56,7 +56,7 @@ int main(void) {
             }
             for (int j = 0; j < no; j++) {
                 waste += val;
-                int temp = update(segTree, 0, N - 1, val, 0);
+                int temp = update(segTree, 0, n - 1, val, 0);
                 res = max(res, temp);
             }
         }

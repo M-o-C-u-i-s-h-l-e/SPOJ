@@ -1,19 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define endl '\n'
 #define F first
 #define S second
 
-vector<int> BITree(1e5+7);
+vector<int> BITree;
 
-void update(int pos, int val, int n) {
+inline void update(int pos, int val, int n) {
 	while (pos <= n) {
 		BITree[pos] = min(BITree[pos], val);
 		pos += (pos & -pos);
 	}
 }
 
-int query(int pos) {
+inline int query(int pos) {
 	int Min = INT_MAX;
 	while (pos) {
 		Min = min(BITree[pos], Min);
@@ -28,20 +27,20 @@ int main(void) {
 	cout.tie(0);
 	
 	int n, Count = 0;
-	cin >> n;
+	scanf("%d", &n);
 	vector<pair<int, pair<int, int>>> v(n);
+	BITree.resize(n + 7, INT_MAX);
 	for (int i = 0; i < n; i++)
-		cin >> v[i].F;
+		scanf("%d", &v[i].S.S);
 	for (int i = 0; i < n; i++)
-		cin >> v[i].S.F;
+		scanf("%d", &v[i].S.F);
 	for (int i = 0; i < n; i++)
-		cin >> v[i].S.S;
+		scanf("%d", &v[i].F);
 	sort(v.begin(), v.end());
-	fill(BITree.begin(), BITree.begin() + (n + 7), INT_MAX);
 	for (int i = 0; i < n; i++) {
 		if (query(v[i].S.F) > v[i].S.S)
 			Count++;
 		update(v[i].S.F, v[i].S.S, n + 7);
 	}
-	cout << Count << endl;
+	printf("%d\n", Count);
 }
